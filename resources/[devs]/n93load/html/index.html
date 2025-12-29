@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Screen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load config.js before main.js -->
+  <script src="config.js"></script>  <!-- This needs to be first -->
+  <script type="module" src="main.js"></script>  <!-- Then load main.js -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="relative flex flex-col items-center justify-center min-h-screen text-white">
+
+  <!-- Background Video -->
+  <video id="bgVideo" class="absolute inset-0 w-full h-full object-cover -z-10" autoplay muted loop playsinline></video>
+
+  <audio id="bgAudio">
+    <source src="https://r2.fivemanage.com/nNUwutrhl5f3DR2YahJla/Gunna-GOTDAMNOfficialVideo.mp3" type="audio/mp3" />
+  </audio>
+
+  <!-- Server Info Sidebar -->
+  <div id="serverInfoSidebar" class="fixed left-0 top-0 h-full w-80 bg-black/20 backdrop-blur-md transform -translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
+    <div class="p-6"> 
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold text-white">Server Information</h2>
+        <button id="closeSidebar" class="text-white hover:text-gray-300 text-xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="space-y-6">
+        <!-- Server Information Section -->
+        <div>
+          <div class="flex items-center mb-3">
+            <div class="w-2 h-2 rounded-full mr-2" style="background-color: #3DFFDB;"></div>
+            <h3 class="text-lg font-semibold text-white">SERVER INFORMATION</h3>
+          </div>
+          <div class="text-gray-300 text-sm leading-relaxed">
+            <p>Welcome to Dynasty Roleplay! This is a Serious Based RP server. Once you connect to the server we need to make sure that you have a working mic & proper clothing. Please make sure you read the rules and are familiar with the rules before you join to avoid any consequences. Have a great time RPing. Please make sure to join the discord! Enjoy</p>
+          </div>
+        </div>
+
+        <!-- Server Rules Section -->
+        <div>
+          <div class="flex items-center mb-3">
+            <div class="w-2 h-2 rounded-full mr-2" style="background-color: #3DFFDB;"></div>
+            <h3 class="text-lg font-semibold text-white">SERVER RULES</h3>
+          </div>
+          <div class="space-y-4 text-gray-300 text-sm">
+            <div>
+              <p class="font-medium text-white">Rule: 1</p>
+              <p>Please make sure to stay in character at all times to avoid any consequences!</p>
+            </div>
+            <div>
+              <p class="font-medium text-white">Rule: 2</p>
+              <p>Please make sure that you have a working microphone before connecting to server!</p>
+            </div>
+            <div>
+              <p class="font-medium text-white">Rule: 3</p>
+              <p>Please make sure once you load into the server you fully customize your character and have a proper outfit on!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay when sidebar is open -->
+  <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div class="text-center">
+    <img src="/placeholder.svg" class="w-40 mx-auto interactive" alt="Player Logo">
+  </div>
+
+  <div class="flex justify-start">
+    <div class="content">
+      <p id="site-name" class="uppercase text-3xl font-extrabold tracking-wider text-color-red text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+        WELCOME TO DYNASTY ROLEPLAY
+      </p>
+    </div>
+  </div>
+
+  <div class="content mt-2">
+    <p id="typewriter" class="text-xl font-semibold text-white font-mono whitespace-pre-line"></p>
+  </div>
+
+  <div
+    class="flex items-center justify-center absolute bottom-5 left-1/4 w-[50%] flex-wrap rounded-[8px] px-6 py-4 md:flex-nowrap space-x-4 bg-black/30 backdrop-blur-md">
+    
+    <!-- Song Info (removed image) -->
+    <div class="ml-4">
+      <p id="songTitle" class="text-white font-bold text-lg">Song Title</p>
+      <p id="songArtist" class="text-white text-sm">Artist Name</p>
+    </div>
+
+    <div class="flex items-center justify-center flex-1 space-x-3">
+      <button id="skipBackward" class="custom-button">
+        <i class="fas fa-backward"></i>
+      </button>
+      <button id="toggleBtn" class="custom-button">
+        <i class="fas fa-play"></i>
+      </button>
+      <button id="skipForward" class="custom-button">
+        <i class="fas fa-forward"></i>
+      </button>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <i class="fas fa-volume-up text-grey-400"></i>
+      <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
+    </div>
+
+    <div id="social-links" class="flex items-center space-x-4 ml-4">
+      <a onclick="window.invokeNative('openUrl', 'https://discord.com/invite/dynastyroleplay')" id="discordBtn" target="_blank" class="text-white text-2xl social-icon" title="Join Discord">
+        <i class="fab fa-discord"></i>
+      </a>
+      <button id="serverInfoBtn" class="text-white text-2xl social-icon" title="Server Info">
+        <i class="fas fa-file-alt"></i>
+      </button>
+      <a onclick="window.invokeNative('openUrl', 'https://discord.com/invite/dynastyroleplay')" id="storeBtn" target="_blank" class="text-white text-2xl social-icon" title="Visit Store">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <div id="profilesContainer" class="fixed left-6 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4">
+  </div>
+</body>
+
+</html>

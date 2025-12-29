@@ -1,0 +1,139 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  cursor: default;
+}
+
+#volumeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100px;
+  height: 4px;
+  background: rgb(252, 252, 252);
+  border-radius: 2px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .15s ease-in-out;
+}
+
+#volumeSlider:hover {
+  opacity: 1;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+#volumeSlider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.custom-button,
+button,
+.interactive-container,
+.interactive,
+.flex,
+.content {
+  cursor: pointer;
+}
+
+/* Button styles */
+.custom-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(245, 245, 245);
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-button:hover {
+  color: rgb(255, 255, 255);
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s;
+}
+
+button:hover {
+  color: lightgray;
+}
+
+.social-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.social-icon:active {
+  transform: scale(0.9);
+}
+
+/* Server Info Sidebar Styles */
+#serverInfoSidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+#serverInfoSidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+#serverInfoSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#serverInfoSidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+#serverInfoSidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure sidebar is above other elements */
+#serverInfoSidebar {
+  z-index: 50;
+}
+
+#sidebarOverlay {
+  z-index: 40;
+}
+
+/* Management bar styles */
+.management-bar {
+  background: linear-gradient(90deg, #3DFFDB 0%, #3DFFDB 100%);
+}
+
+/* Profile container positioning */
+#profilesContainer {
+  z-index: 30;
+}
+
+/* Ensure profiles don't interfere with sidebar */
+#profilesContainer.sidebar-open {
+  transform: translate(320px, -50%);
+  transition: transform 0.3s ease-in-out;
+}

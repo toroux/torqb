@@ -1,0 +1,100 @@
+Config = Config or {}
+
+Config.Debug = false
+Config.MaxDrawDistance = 15.0
+Config.MaxZoneHeight = 25.0
+
+-- Color format: {R, G, B} values from 0-255
+-- Example colors:
+-- Red: {255, 0, 0}
+-- Orange: {255, 165, 0}
+-- Yellow: {255, 255, 0}
+-- Pink: {255, 192, 203}
+-- Opacity format: 0-255 (0 = fully transparent, 255 = fully opaque)
+
+Config.Zones = {
+	-- ["Apartments"] = {
+	-- 	["label"] = "Apartments",
+	-- 	["zone"] = {
+	-- 		vector3(-727.891, 279.443, 84.932),
+	-- 		vector3(-731.605, 378.808, 87.437),
+	-- 		vector3(-867.63, 380.359, 87.488),
+	-- 		vector3(-866.735, 255.105, 75.656),
+	-- 	},
+	-- 	Thickness = 200,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
+	-- },
+	-- ["HangingGardens"] = {
+	-- 	["label"] = "Hanging Gardens",
+	-- 	["zone"] = {
+	-- 		vector3(-1204.78, 25.98, 50.46),
+	-- 		vector3(-1270.24, 148.71, 58.68),
+	-- 		vector3(-1156.8, 63.29, 55.92),
+	-- 		vector3(-1298.72, 78.72, 54.91),
+	-- 	},
+	-- 	Thickness = 100,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
+	-- },
+	-- ["GYM"] = {
+	-- 	["label"] = "GYM",
+	-- 	["zone"] = {
+	-- 		vector3(-1182.73, -1581.891, 35.0),
+	-- 		vector3(-1194.277, -1591.101, 35.0),
+	-- 		vector3(-1216.39, -1559.082, 35.0),
+	-- 		vector3(-1204.415, -1547.241, 35.0),
+	-- 	},
+	-- 	Thickness = 40,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
+	-- },
+	-- ["VIPGym"] = {
+	-- 	["label"] = "VIPGym",
+	-- 	["zone"] = {
+	-- 		vector3(-1279.485, -355.2881, 35.0),
+	-- 		vector3(-1250.46, -339.6204, 35.0),
+	-- 		vector3(-1236.178, -374.3773, 35.0),
+	-- 		vector3(-1265.623, -387.0617, 35.0),
+	-- 	},
+	-- 	Thickness = 40,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
+	-- },
+	-- ["CityHall"] = {
+	-- 	["label"] = "City Hall",
+	-- 	["zone"] = {
+	-- 		vector3(-558.9023, -280.6525, 35.0),
+	-- 		vector3(-606.8351, -185.7866, 35.0),
+	-- 		vector3(-513.9351, -153.0535, 35.0),
+	-- 		vector3(-471.1452, -244.2657, 35.0),
+	-- 	},
+	-- 	Thickness = 40,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
+	-- },
+	-- ["Comms"] = {
+	-- 	["label"] = "Comms",
+	-- 	["zone"] = {
+    --         vector3(-1076.976, -3443.046, 25.0),
+    --         vector3(-981.8436, -3491.049, 25.0),
+    --         vector3(-1021.728, -3566.211, 25.0),
+    --         vector3(-1114.633, -3513.965, 25.0),
+	-- 	},
+	-- 	Thickness = 40,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
+	-- },
+	["Weekend Drug Zone"] = {
+		["label"] = "Weekend Drug Zone",
+		["zone"] = {
+			vector3(1253.56, -1454.94, 34.96),
+			vector3(1096.35, -1450.85, 36.41),
+			vector3(1110.58, -1639.16, 30.27),
+			vector3(1272.08, -1522.04, 42.97),			
+		},
+		Thickness = 25,
+		Color = {255, 0, 0}, -- Red
+		Opacity = 50 -- 0-255 (100 = semi-transparent)
+	},
+}

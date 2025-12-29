@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airdrop Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-tertiary: #e5e5ea;
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-tertiary: #999999;
+            --accent: #007AFF;
+            --accent-light: #5AC8FA;
+            --separator: #e5e5ea;
+            --success: #34C759;
+            --warning: #FF9500;
+            --danger: #FF3B30;
+            --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --btn-shadow: 0 4px 12px rgba(0, 122, 255, 0.15);
+        }
+
+        html[data-theme="dark"] {
+            --bg-primary: #1c1c1e;
+            --bg-secondary: #2c2c2e;
+            --bg-tertiary: #3a3a3c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #606060;
+            --accent: #0a84ff;
+            --accent-light: #5ac8fa;
+            --separator: #424245;
+            --success: #30b0c0;
+            --warning: #ff9500;
+            --danger: #ff453a;
+            --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            --btn-shadow: 0 4px 12px rgba(10, 132, 255, 0.25);
+        }
+
+        html[data-theme="blue"] {
+            --bg-primary: #0a1929;
+            --bg-secondary: #132f4c;
+            --bg-tertiary: #1e4976;
+            --text-primary: #e3f2fd;
+            --text-secondary: #90caf9;
+            --text-tertiary: #64b5f6;
+            --accent: #2196f3;
+            --accent-light: #42a5f5;
+            --separator: #1e4976;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --card-shadow: 0 2px 10px rgba(33, 150, 243, 0.2);
+            --btn-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        html[data-theme="green"] {
+            --bg-primary: #1b2e1b;
+            --bg-secondary: #2d4a2d;
+            --bg-tertiary: #3d5f3d;
+            --text-primary: #e8f5e9;
+            --text-secondary: #a5d6a7;
+            --text-tertiary: #81c784;
+            --accent: #4caf50;
+            --accent-light: #66bb6a;
+            --separator: #3d5f3d;
+            --success: #66bb6a;
+            --warning: #ffa726;
+            --danger: #ef5350;
+            --card-shadow: 0 2px 10px rgba(76, 175, 80, 0.2);
+            --btn-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        html[data-theme="purple"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #0f3460;
+            --text-primary: #f3e5f5;
+            --text-secondary: #ce93d8;
+            --text-tertiary: #ba68c8;
+            --accent: #9c27b0;
+            --accent-light: #ab47bc;
+            --separator: #0f3460;
+            --success: #66bb6a;
+            --warning: #ffa726;
+            --danger: #ef5350;
+            --card-shadow: 0 2px 10px rgba(156, 39, 176, 0.2);
+            --btn-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        }
+
+        html[data-theme="red"] {
+            --bg-primary: #2e1b1b;
+            --bg-secondary: #4a2d2d;
+            --bg-tertiary: #5f3d3d;
+            --text-primary: #ffebee;
+            --text-secondary: #ef9a9a;
+            --text-tertiary: #e57373;
+            --accent: #f44336;
+            --accent-light: #ef5350;
+            --separator: #5f3d3d;
+            --success: #66bb6a;
+            --warning: #ffa726;
+            --danger: #d32f2f;
+            --card-shadow: 0 2px 10px rgba(244, 67, 54, 0.2);
+            --btn-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+        }
+
+        html[data-theme="orange"] {
+            --bg-primary: #2e241b;
+            --bg-secondary: #4a3d2d;
+            --bg-tertiary: #5f4d3d;
+            --text-primary: #fff3e0;
+            --text-secondary: #ffcc80;
+            --text-tertiary: #ffb74d;
+            --accent: #ff9800;
+            --accent-light: #ffa726;
+            --separator: #5f4d3d;
+            --success: #66bb6a;
+            --warning: #ffb74d;
+            --danger: #ef5350;
+            --card-shadow: 0 2px 10px rgba(255, 152, 0, 0.2);
+            --btn-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+        }
+
+        html[data-theme="pink"] {
+            --bg-primary: #2e1b2e;
+            --bg-secondary: #4a2d4a;
+            --bg-tertiary: #5f3d5f;
+            --text-primary: #fce4ec;
+            --text-secondary: #f48fb1;
+            --text-tertiary: #f06292;
+            --accent: #e91e63;
+            --accent-light: #ec407a;
+            --separator: #5f3d5f;
+            --success: #66bb6a;
+            --warning: #ffa726;
+            --danger: #ef5350;
+            --card-shadow: 0 2px 10px rgba(233, 30, 99, 0.2);
+            --btn-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+        }
+
+        html[data-theme="cyan"] {
+            --bg-primary: #1b2e2e;
+            --bg-secondary: #2d4a4a;
+            --bg-tertiary: #3d5f5f;
+            --text-primary: #e0f7fa;
+            --text-secondary: #80deea;
+            --text-tertiary: #4dd0e1;
+            --accent: #00bcd4;
+            --accent-light: #26c6da;
+            --separator: #3d5f5f;
+            --success: #66bb6a;
+            --warning: #ffa726;
+            --danger: #ef5350;
+            --card-shadow: 0 2px 10px rgba(0, 188, 212, 0.2);
+            --btn-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: transparent;
+            color: var(--text-primary);
+        }
+        
+        #dashboard {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 95vw;
+            max-width: 1400px;
+            max-height: 90vh;
+            min-height: 600px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 20px;
+            padding: 24px;
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #dashboard.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Scrollbar Styling */
+        #dashboard::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #dashboard::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #dashboard::-webkit-scrollbar-thumb {
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+        }
+
+        #dashboard::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
+        }
+
+        .theme-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s;
+            box-shadow: var(--card-shadow);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.92);
+        }
+
+        .theme-selector {
+            position: relative;
+        }
+
+        .theme-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 180px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s;
+            z-index: 100;
+            border: 1.5px solid var(--separator);
+        }
+
+        .theme-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .theme-option:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .theme-option.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .theme-color-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--separator);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+
+        .close-btn {
+            background: var(--bg-secondary);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+        
+        .close-btn:active {
+            transform: scale(0.92);
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 8px;
+        }
+
+        /* Airdrops tab with 3 columns */
+        #airdrops-tab .content {
+            grid-template-columns: 280px 1fr 1fr;
+            min-width: 0; /* Prevent grid overflow */
+        }
+
+        #airdrops-tab .content > * {
+            min-width: 0; /* Prevent grid items from overflowing */
+        }
+
+        .content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .content::-webkit-scrollbar-thumb {
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+        }
+
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 10px 12px;
+            background: var(--bg-primary);
+            border: 1.5px solid var(--separator);
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .button-small {
+            padding: 10px 14px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--btn-shadow);
+        }
+
+        .button-small:active {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+
+        .button-large {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 12px;
+            box-shadow: var(--btn-shadow);
+            flex-shrink: 0;
+        }
+
+        .button-large:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+
+        .drop-type-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .drop-type-btn {
+            padding: 10px;
+            background: var(--bg-primary);
+            border: 1.5px solid var(--separator);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+
+        .drop-type-btn:active {
+            transform: scale(0.96);
+        }
+
+        .drop-type-btn.selected {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .slider-group {
+            margin-bottom: 12px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .slider-label-text {
+            color: var(--text-secondary);
+        }
+
+        .slider-value {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-tertiary);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+            transition: all 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:active {
+            transform: scale(1.15);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+            transition: all 0.2s;
+        }
+        
+        .reward-list {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1.5px solid var(--separator);
+        }
+
+        .reward-list.hidden {
+            display: none;
+        }
+
+        .reward-item-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--separator);
+            font-size: 12px;
+        }
+        
+        .reward-item-display:last-child {
+            border-bottom: none;
+        }
+
+        .reward-remove {
+            background: var(--danger);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        
+        .reward-remove:active {
+            transform: scale(0.9);
+        }
+
+        .color-picker-group {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .color-input {
+            flex: 1;
+        }
+
+        .color-preview {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1.5px solid var(--separator);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-preview:active {
+            transform: scale(0.92);
+        }
+
+        .time-info {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border: 1.5px solid var(--separator);
+        }
+
+        .time-info-label {
+            color: var(--text-tertiary);
+            font-size: 11px;
+        }
+
+        .time-info-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .coord-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 8px;
+            align-items: flex-end;
+            margin-bottom: 16px;
+            min-width: 0; /* Prevent overflow */
+        }
+
+        .coord-input {
+            padding: 8px 6px;
+            background: var(--bg-primary);
+            border: 1.5px solid var(--separator);
+            border-radius: 12px;
+            font-size: 11px;
+            color: var(--text-primary);
+            text-align: center;
+            transition: all 0.2s;
+            font-family: 'Courier New', monospace;
+            min-width: 0;
+            width: 100%;
+            max-width: 90px;
+        }
+
+        .coord-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .set-current-btn {
+            padding: 8px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            box-shadow: var(--btn-shadow);
+            min-width: 44px;
+            width: 44px;
+            height: 36px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .set-current-btn:active {
+            transform: scale(0.96);
+        }
+
+        #notifications-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90vw;
+            max-width: 600px;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .notification {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 16px 20px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+
+        .notification.error {
+            border-left-color: var(--danger);
+        }
+
+        .notification.success {
+            border-left-color: var(--success);
+        }
+
+        .notification-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .notification-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            #dashboard {
+                max-width: 100vw;
+                max-height: 100vh;
+                border-radius: 0;
+                padding: 16px;
+        }
+
+            .content {
+                grid-template-columns: 1fr;
+        }
+
+            .coord-group {
+                grid-template-columns: 1fr 1fr 1fr auto;
+            }
+
+            .coord-input {
+                max-width: 100%;
+            }
+
+            .set-current-btn {
+                width: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* Prevent text selection on interactive elements */
+        button, .drop-type-btn, .slider-group input[type="range"] {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-top: 8px;
+        }
+
+        /* Active Airdrops Panel */
+        .active-airdrops-container {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-top: 12px;
+        }
+
+        .active-airdrops-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .active-airdrops-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .active-airdrops-container::-webkit-scrollbar-thumb {
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+        }
+
+        .airdrop-item {
+            background: var(--bg-primary);
+            border: 1.5px solid var(--separator);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+
+        .airdrop-item:hover {
+            border-color: var(--accent);
+        }
+
+        .airdrop-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .airdrop-item-id {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .airdrop-item-status {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .airdrop-item-status.unlocked {
+            background: var(--success);
+            color: white;
+        }
+
+        .airdrop-item-status.locked {
+            background: var(--warning);
+            color: white;
+        }
+
+        .airdrop-item-coords {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 8px;
+            word-break: break-all;
+        }
+
+        .airdrop-item-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .airdrop-item-actions .button-small {
+            flex: 1;
+            padding: 8px 10px;
+            font-size: 11px;
+        }
+
+        .button-danger {
+            background: var(--danger);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 59, 48, 0.2);
+        }
+
+        /* Confirmation Dialog */
+        .confirm-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .confirm-dialog.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .confirm-dialog-content {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 24px;
+            min-width: 400px;
+            max-width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.2s;
+        }
+
+        .confirm-dialog.active .confirm-dialog-content {
+            transform: scale(1);
+        }
+
+        .confirm-dialog-header {
+            margin-bottom: 16px;
+        }
+
+        .confirm-dialog-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .confirm-dialog-body {
+            margin-bottom: 20px;
+        }
+
+        .confirm-dialog-body p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .confirm-dialog-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <audio id="audioPlayer" src="audio/announcement.ogg"></audio>
+    <div id="notifications-container"></div>
+    
+    <div id="confirmDialog" class="confirm-dialog">
+        <div class="confirm-dialog-content">
+            <div class="confirm-dialog-header">
+                <h2>Confirm Deletion</h2>
+            </div>
+            <div class="confirm-dialog-body">
+                <p id="confirmDialogMessage">Are you sure you want to delete this airdrop?</p>
+            </div>
+            <div class="confirm-dialog-actions">
+                <button id="confirmDialogCancel" class="button-small">Cancel</button>
+                <button id="confirmDialogConfirm" class="button-small button-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="dashboard">
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <div class="theme-container">
+                <div class="theme-selector">
+                    <button class="theme-toggle" id="theme-toggle" title="Theme Settings">🎨</button>
+                    <div class="theme-dropdown" id="theme-dropdown">
+                        <div class="theme-option" data-theme="light">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #ffffff 0%, #f5f5f7 100%);"></div>
+                            <span>Light</span>
+                    </div>
+                        <div class="theme-option" data-theme="dark">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);"></div>
+                            <span>Dark</span>
+                </div>
+                        <div class="theme-option" data-theme="blue">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #0a1929 0%, #2196f3 100%);"></div>
+                            <span>Blue</span>
+                </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #1b2e1b 0%, #4caf50 100%);"></div>
+                            <span>Green</span>
+            </div>
+                        <div class="theme-option" data-theme="purple">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #1a1a2e 0%, #9c27b0 100%);"></div>
+                            <span>Purple</span>
+                </div>
+                        <div class="theme-option" data-theme="red">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #2e1b1b 0%, #f44336 100%);"></div>
+                            <span>Red</span>
+                    </div>
+                        <div class="theme-option" data-theme="orange">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #2e241b 0%, #ff9800 100%);"></div>
+                            <span>Orange</span>
+                </div>
+                        <div class="theme-option" data-theme="pink">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #2e1b2e 0%, #e91e63 100%);"></div>
+                            <span>Pink</span>
+                    </div>
+                        <div class="theme-option" data-theme="cyan">
+                            <div class="theme-color-preview" style="background: linear-gradient(135deg, #1b2e2e 0%, #00bcd4 100%);"></div>
+                            <span>Cyan</span>
+                </div>
+                    </div>
+                </div>
+                </div>
+                    </div>
+
+        <div id="airdrops-tab" class="tab-content active">
+        <div class="content">
+            <div>
+                <div class="section">
+                    <div class="section-title">Active Airdrops</div>
+                    <div id="active-airdrops" class="active-airdrops-container">
+                        <div class="empty-state">
+                            <div style="font-size: 48px; margin-bottom: 12px;">📦</div>
+                            <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">No active airdrops</div>
+                            <div class="empty-state-text">Create an airdrop to see it here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="section">
+                    <div class="section-title">Reward Items</div>
+                    <div class="input-group">
+                        <input type="text" id="reward-input" class="input-field" placeholder="Item name" />
+                        <input type="number" id="quantity-input" class="input-field" style="flex: 0.4;" placeholder="Qty" min="1" value="1" />
+                        <button id="add-reward" class="button-small">Add</button>
+                    </div>
+                    <div id="rewards-list" class="reward-list hidden">
+                        <div id="selected-rewards"></div>
+                    </div>
+                </div>
+                <div class="section" style="margin-top: 16px;">
+                    <div class="section-title">Time Until Open</div>
+                    <div class="time-info">
+                        <div class="time-info-label">Total Time</div>
+                        <div class="time-info-value" id="total-time">0:00</div>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span class="slider-label-text">Hours</span>
+                                <span class="slider-value" id="hours-value">0</span>
+                            </div>
+                        <input type="range" id="hours" min="0" max="23" step="1" value="0" />
+                        </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span class="slider-label-text">Minutes</span>
+                                <span class="slider-value" id="minutes-value">0</span>
+                            </div>
+                        <input type="range" id="minutes" min="0" max="59" step="1" value="0" />
+                        </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span class="slider-label-text">Seconds</span>
+                                <span class="slider-value" id="seconds-value">0</span>
+                            </div>
+                        <input type="range" id="seconds" min="0" max="59" step="1" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+            <div>
+                <div class="section">
+                    <div class="section-title">Drop Type</div>
+                    <div class="drop-type-container">
+                        <button class="drop-type-btn selected" data-drop-type="normal">Normal</button>
+                        <button class="drop-type-btn" data-drop-type="green">No Robs</button>
+                        <button class="drop-type-btn" data-drop-type="gold">Gangs Only</button>
+            </div>
+        </div>
+                <div class="section" style="margin-top: 16px;">
+                    <div class="section-title">Location</div>
+                    <div class="coord-group">
+                        <input type="number" id="x-coord" class="coord-input" placeholder="X" step="0.01" />
+                        <input type="number" id="y-coord" class="coord-input" placeholder="Y" step="0.01" />
+                        <input type="number" id="z-coord" class="coord-input" placeholder="Z" step="0.01" />
+                        <button id="set-current-btn" class="set-current-btn">📍</button>
+    </div>
+                </div>
+                <div class="section" style="margin-top: 16px;">
+                    <div class="section-title">Radius</div>
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span class="slider-label-text">Radius</span>
+                            <span class="slider-value" id="radius-value">75.0</span>
+                        </div>
+                        <input type="range" id="radius-input" min="1" max="200" step="0.1" value="75.0" />
+                    </div>
+
+                    <div class="section-title" style="margin-top: 16px;">Radius Color (Optional)</div>
+                    <div class="color-picker-group">
+                        <input type="text" id="color-hex" class="input-field color-input" placeholder="#FF69B4" maxlength="7" />
+                        <div id="color-preview" class="color-preview" style="background-color: #FF69B4;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-tertiary);">Leave empty for default color                    </div>
+                </div>
+                <button id="create-airdrop" class="button-large">Create Airdrop</button>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <script>
+        const dashboard = document.getElementById('dashboard');
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        const themeDropdown = document.getElementById('theme-dropdown');
+        const themeOptions = document.querySelectorAll('.theme-option');
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('airdrop-theme') || 'light';
+            setTheme(savedTheme);
+        }
+
+        function setTheme(themeName) {
+            html.setAttribute('data-theme', themeName);
+            localStorage.setItem('airdrop-theme', themeName);
+            
+            themeOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-theme') === themeName) {
+                    option.classList.add('active');
+            }
+            });
+        }
+
+        function toggleThemeDropdown() {
+            themeDropdown.classList.toggle('active');
+        }
+
+        themeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const themeName = this.getAttribute('data-theme');
+                setTheme(themeName);
+                themeDropdown.classList.remove('active');
+            });
+        });
+
+        themeToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleThemeDropdown();
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
+                themeDropdown.classList.remove('active');
+            }
+        });
+
+        initTheme();
+
+        window.addEventListener('message', function(event) {
+            if (event.data.action === 'toggleDashboard' && event.data.show) {
+                fetch(`https://${GetParentResourceName()}/requestAirdrops`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+            }
+        });
+
+        const rewardInput = document.getElementById('reward-input');
+        const quantityInput = document.getElementById('quantity-input');
+        const addRewardBtn = document.getElementById('add-reward');
+        const rewardsList = document.getElementById('rewards-list');
+        const selectedRewards = document.getElementById('selected-rewards');
+        const dropTypeButtons = document.querySelectorAll('.drop-type-btn');
+        const createButton = document.getElementById('create-airdrop');
+        const hoursInput = document.getElementById('hours');
+        const minutesInput = document.getElementById('minutes');
+        const secondsInput = document.getElementById('seconds');
+        const radiusInput = document.getElementById('radius-input');
+        const colorHexInput = document.getElementById('color-hex');
+        const colorPreview = document.getElementById('color-preview');
+        const totalTimeDisplay = document.getElementById('total-time');
+
+        function updateSliderValues() {
+            document.getElementById('hours-value').textContent = hoursInput.value;
+            document.getElementById('minutes-value').textContent = minutesInput.value;
+            document.getElementById('seconds-value').textContent = secondsInput.value;
+            document.getElementById('radius-value').textContent = parseFloat(radiusInput.value).toFixed(1);
+        }
+
+        function updateTotalTime() {
+            const h = parseInt(hoursInput.value) || 0;
+            const m = parseInt(minutesInput.value) || 0;
+            const s = parseInt(secondsInput.value) || 0;
+            const total = h * 3600 + m * 60 + s;
+            
+            if (total === 0) {
+                totalTimeDisplay.textContent = '0:00';
+            } else if (total < 60) {
+                totalTimeDisplay.textContent = `${s}s`;
+            } else if (total < 3600) {
+                const mins = Math.floor(total / 60);
+                const secs = total % 60;
+                totalTimeDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            } else {
+                const hrs = Math.floor(total / 3600);
+                const mins = Math.floor((total % 3600) / 60);
+                totalTimeDisplay.textContent = `${hrs}:${mins.toString().padStart(2, '0')}h`;
+            }
+        }
+
+        updateSliderValues();
+        updateTotalTime();
+
+        hoursInput.addEventListener('input', () => {
+            updateSliderValues();
+            updateTotalTime();
+        });
+        minutesInput.addEventListener('input', () => {
+            updateSliderValues();
+            updateTotalTime();
+        });
+        secondsInput.addEventListener('input', () => {
+            updateSliderValues();
+            updateTotalTime();
+        });
+        radiusInput.addEventListener('input', updateSliderValues);
+
+        colorHexInput.addEventListener('input', function() {
+            let hex = this.value.trim().toUpperCase();
+            let hexNoHash = hex.replace('#', '');
+            if (/^[0-9A-F]{6}$/.test(hexNoHash)) {
+                colorPreview.style.backgroundColor = '#' + hexNoHash;
+            }
+        });
+
+        dropTypeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                dropTypeButtons.forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        function addReward() {
+            const text = rewardInput.value.trim();
+            const qty = parseInt(quantityInput.value) || 1;
+            if (text) {
+                const div = document.createElement('div');
+                div.className = 'reward-item-display';
+                div.innerHTML = `
+                    <span>${text} (x${qty})</span>
+                    <button class="reward-remove" data-reward="${text}" data-qty="${qty}">×</button>
+                `;
+                selectedRewards.appendChild(div);
+                rewardInput.value = '';
+                quantityInput.value = '1';
+                rewardsList.classList.remove('hidden');
+
+                div.querySelector('.reward-remove').addEventListener('click', function() {
+                    div.remove();
+                    if (selectedRewards.children.length === 0) {
+                        rewardsList.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        addRewardBtn.addEventListener('click', addReward);
+        rewardInput.addEventListener('keypress', e => {
+            if (e.key === 'Enter') addReward();
+        });
+
+        function showNotification(title, description, type = 'warning') {
+            const container = document.getElementById('notifications-container');
+            const notif = document.createElement('div');
+            notif.className = `notification ${type}`;
+            notif.innerHTML = `
+                <div class="notification-title">${title}</div>
+                <div class="notification-description">${description}</div>
+            `;
+            container.appendChild(notif);
+            notif.offsetHeight;
+            notif.classList.add('show');
+
+            setTimeout(() => {
+                notif.classList.remove('show');
+                setTimeout(() => notif.remove(), 300);
+            }, 4000);
+        }
+
+        function toggleDashboard(show) {
+            dashboard.classList.toggle('active', show);
+        }
+
+        createButton.addEventListener('click', function() {
+            const x = document.getElementById('x-coord').value;
+            const y = document.getElementById('y-coord').value;
+            const z = document.getElementById('z-coord').value;
+
+            if (!x || !y || !z) {
+                showNotification('Error', 'Please set all coordinates', 'error');
+                return;
+            }
+
+            const rewards = Array.from(selectedRewards.querySelectorAll('.reward-item-display')).map(el => {
+                const text = el.querySelector('button').getAttribute('data-reward');
+                const qty = parseInt(el.querySelector('button').getAttribute('data-qty'));
+                return { item: text, quantity: qty };
+            });
+
+            const data = {
+                x, y, z,
+                radius: parseFloat(radiusInput.value) || null,
+                colorHex: colorHexInput.value.trim() || null,
+                hours: hoursInput.value,
+                minutes: minutesInput.value,
+                seconds: secondsInput.value,
+                rewards,
+                dropType: document.querySelector('.drop-type-btn.selected').getAttribute('data-drop-type')
+            };
+
+            fetch(`https://${GetParentResourceName()}/createAirdrop`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            setTimeout(() => {
+                clearInputs();
+            }, 500);
+        });
+
+        document.getElementById('set-current-btn').addEventListener('click', function() {
+                    fetch(`https://${GetParentResourceName()}/getCurrentCoords`, {
+                        method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({})
+                    });
+                });
+
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            if (data.action === 'toggleDashboard') {
+                toggleDashboard(data.show);
+                if (data.dropType) {
+                    document.querySelector('.drop-type-btn.selected').classList.remove('selected');
+                    document.querySelector(`[data-drop-type="${data.dropType}"]`).classList.add('selected');
+                }
+            }
+            if (data.action === 'updateCoords') {
+                document.getElementById('x-coord').value = data.coords.x;
+                document.getElementById('y-coord').value = data.coords.y;
+                document.getElementById('z-coord').value = data.coords.z;
+                }
+            if (data.action === 'playSound') {
+                document.getElementById('audioPlayer').play();
+            }
+            if (data.action === 'showNotification') {
+                const opts = data.options;
+                showNotification(opts.title, opts.description, opts.type || 'warning');
+            }
+            if (data.action === 'updateAirdrops') {
+                airdrops = data.airdrops || {};
+                refreshActiveAirdrops();
+            }
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                toggleDashboard(false);
+                fetch(`https://${GetParentResourceName()}/closeDashboard`, { method: 'POST' });
+            }
+        });
+
+        let airdrops = {};
+
+        function refreshActiveAirdrops() {
+            const container = document.getElementById("active-airdrops");
+            container.innerHTML = "";
+
+            const airdropList = Object.keys(airdrops);
+            if (airdropList.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div style="font-size: 48px; margin-bottom: 12px;">📦</div>
+                        <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">No active airdrops</div>
+                        <div class="empty-state-text">Create an airdrop to see it here</div>
+                    </div>
+                `;
+                return;
+            }
+
+            airdropList.forEach(dropId => {
+                const airdrop = airdrops[dropId];
+                if (!airdrop) return;
+
+                const coords = airdrop.coords || { x: 0, y: 0, z: 0 };
+                const status = airdrop.unlocked ? 'unlocked' : 'locked';
+                const statusText = airdrop.unlocked ? 'Unlocked' : 'Locked';
+                const shortId = (dropId || '').substring(0, 8);
+                const creatorName = airdrop.creatorName || 'Unknown';
+                const x = coords.x !== undefined ? coords.x : (coords[1] || 0);
+                const y = coords.y !== undefined ? coords.y : (coords[2] || 0);
+                const z = coords.z !== undefined ? coords.z : (coords[3] || 0);
+
+                const el = document.createElement("div");
+                el.className = "airdrop-item";
+                el.innerHTML = `
+                    <div class="airdrop-item-header">
+                        <div class="airdrop-item-id">Airdrop ${shortId}</div>
+                        <div class="airdrop-item-status ${status}">${statusText}</div>
+                    </div>
+                    <div class="airdrop-item-coords">
+                        X: ${x.toFixed(2)}<br>
+                        Y: ${y.toFixed(2)}<br>
+                        Z: ${z.toFixed(2)}<br>
+                        <span style="color: var(--text-tertiary); font-size: 10px;">Created by: ${creatorName}</span>
+                    </div>
+                    <div class="airdrop-item-actions">
+                        <button class="button-small button-danger" onclick="deleteAirdrop('${dropId}')">Delete</button>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function deleteAirdrop(dropId) {
+            showConfirmDialog(`Are you sure you want to delete airdrop ${dropId.substring(0, 8)}?`, function() {
+                fetchNui("deleteAirdrop", { dropId: dropId });
+            });
+        }
+
+        let currentEscHandler = null;
+        function showConfirmDialog(message, onConfirm) {
+            const dialog = document.getElementById("confirmDialog");
+            const messageEl = document.getElementById("confirmDialogMessage");
+            const confirmBtn = document.getElementById("confirmDialogConfirm");
+            const cancelBtn = document.getElementById("confirmDialogCancel");
+            
+            if (currentEscHandler) {
+                document.removeEventListener('keydown', currentEscHandler);
+                currentEscHandler = null;
+            }
+            
+            messageEl.textContent = message;
+            dialog.classList.add("active");
+            
+            const newConfirmBtn = confirmBtn.cloneNode(true);
+            const newCancelBtn = cancelBtn.cloneNode(true);
+            confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+            cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+            
+            const closeDialog = function() {
+                dialog.classList.remove("active");
+                if (currentEscHandler) {
+                    document.removeEventListener('keydown', currentEscHandler);
+                    currentEscHandler = null;
+                }
+            };
+            
+            newConfirmBtn.addEventListener("click", function(e) {
+                e.stopPropagation();
+                closeDialog();
+                if (onConfirm) onConfirm();
+            });
+            
+            newCancelBtn.addEventListener("click", function(e) {
+                e.stopPropagation();
+                closeDialog();
+            });
+            
+            const backdropHandler = function(e) {
+                if (e.target === dialog) {
+                    closeDialog();
+                }
+            };
+            dialog.addEventListener("click", backdropHandler);
+            
+            currentEscHandler = function(e) {
+                if (e.key === 'Escape' && dialog.classList.contains("active")) {
+                    closeDialog();
+                }
+            };
+            document.addEventListener('keydown', currentEscHandler);
+        }
+
+        async function fetchNui(eventName, data) {
+            try {
+                const resourceName = typeof GetParentResourceName === 'function' 
+                    ? GetParentResourceName() 
+                    : 'diro_drops';
+                
+                const resp = await fetch(`https://${resourceName}/${eventName}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    },
+                    body: JSON.stringify(data || {})
+                });
+                return await resp.json();
+            } catch (error) {
+                console.error(`Error calling NUI callback ${eventName}:`, error);
+                return null;
+            }
+        }
+
+        refreshActiveAirdrops();
+
+        function clearInputs() {
+            document.getElementById('x-coord').value = '';
+            document.getElementById('y-coord').value = '';
+            document.getElementById('z-coord').value = '';
+            radiusInput.value = '75.0';
+            colorHexInput.value = '';
+            colorPreview.style.backgroundColor = '#FF69B4';
+            hoursInput.value = '0';
+            minutesInput.value = '0';
+            secondsInput.value = '0';
+            rewardInput.value = '';
+            quantityInput.value = '1';
+            selectedRewards.innerHTML = '';
+            rewardsList.classList.add('hidden');
+            updateSliderValues();
+            updateTotalTime();
+            
+            dropTypeButtons.forEach(btn => btn.classList.remove('selected'));
+            document.querySelector('[data-drop-type="normal"]').classList.add('selected');
+        }
+
+        function toggleDashboard(show) {
+            dashboard.classList.toggle('active', show);
+            if (!show) {
+                setTimeout(clearInputs, 200);
+            }
+        }
+    </script>
+</body>
+</html>

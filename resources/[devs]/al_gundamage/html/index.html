@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weapon Tuning</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="tuning-container" class="hidden">
+        <div class="tablet-container">
+            <div class="tuning-header">
+                <div class="header-content">
+                    <img id="header-logo" src="" alt="Logo" class="header-logo">
+                    <div class="header-text">
+                        <div class="tuning-title">Weapon Tuning</div>
+                        <div class="tuning-subtitle">Tune your weapons damage and recoil</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-page="tuning">Tuning</button>
+                <button class="nav-tab" data-page="weapons">My Weapons</button>
+            </div>
+            
+            <!-- Tuning Page -->
+            <div class="page-content" id="tuning-page">
+                <div class="tuning-section">
+                    <div class="weapon-selector">
+                        <label for="weapon-search-input">Search & Select Weapon:</label>
+                        <div class="weapon-search-wrapper">
+                            <input type="text" id="weapon-search-input" class="weapon-search-input" placeholder="Type to search weapons..." autocomplete="off">
+                            <div id="weapon-results" class="weapon-results"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tuning-controls" id="tuning-controls" style="display: none;">
+                        <!-- Damage Tuning -->
+                        <div class="tuning-item">
+                            <div class="tuning-label">
+                                <span>Damage</span>
+                                <span class="tuning-value" id="damage-value">1.00</span>
+                            </div>
+                            <div class="slider-container">
+                                <button class="slider-arrow" id="damage-decrease">◄</button>
+                                <div class="slider-wrapper">
+                                    <input type="range" id="damage-slider" class="tuning-slider" min="0.1" max="2.0" step="0.01" value="1.0">
+                                    <div class="slider-labels">
+                                        <span class="slider-label-left">Decrease</span>
+                                        <span class="slider-label-right">Increase</span>
+                                    </div>
+                                </div>
+                                <button class="slider-arrow" id="damage-increase">►</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Recoil Tuning -->
+                        <div class="tuning-item">
+                            <div class="tuning-label">
+                                <span>Recoil</span>
+                                <span class="tuning-value" id="recoil-value">1.00</span>
+                            </div>
+                            <div class="slider-container">
+                                <button class="slider-arrow" id="recoil-decrease">◄</button>
+                                <div class="slider-wrapper">
+                                    <input type="range" id="recoil-slider" class="tuning-slider" min="0.0" max="2.0" step="0.01" value="1.0">
+                                    <div class="slider-labels">
+                                        <span class="slider-label-left">Decrease</span>
+                                        <span class="slider-label-right">Increase</span>
+                                    </div>
+                                </div>
+                                <button class="slider-arrow" id="recoil-increase">►</button>
+                            </div>
+                        </div>
+                        
+                        <button class="apply-button" id="apply-tuning-btn">Apply Tuning</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Weapons Page -->
+            <div class="page-content hidden" id="weapons-page">
+                <div class="weapons-section">
+                    <div class="search-container">
+                        <input type="text" id="weapon-search" class="search-input" placeholder="Search weapons...">
+                    </div>
+                    <div id="weapons-list" class="weapons-list"></div>
+                </div>
+            </div>
+            
+            <button class="close-button" id="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

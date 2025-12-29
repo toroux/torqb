@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Chat - Created by Torou</title>
+    <link rel="stylesheet" href="staffchat.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="hidden">
+        <div class="cursor-glow" id="cursorGlow"></div>
+        <div class="welcome-container">
+            <div class="welcome-content">
+                <img id="welcome-logo" src="" alt="Logo" class="welcome-logo">
+                <div class="welcome-title">Welcome Staff Member</div>
+                <div class="welcome-message">Get ready to chat</div>
+                <button class="welcome-button" id="proceedBtn">Proceed to Chat Room</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Staff Chat Container -->
+    <div id="staffChatContainer" class="hidden">
+        <div class="tablet-container">
+            <div class="tuning-header">
+                <div class="header-content">
+                    <img id="header-logo" src="" alt="Logo" class="header-logo">
+                    <div class="header-text">
+                        <div class="tuning-title">Staff Chat</div>
+                        <div class="tuning-subtitle">Communicate with staff members</div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="options-button" id="optionsBtn" title="Options">⚙️</button>
+                    <div class="options-dropdown" id="optionsDropdown">
+                        <div class="options-item" id="toggleTimestamps">Toggle Timestamps</div>
+                        <div class="options-item" id="toggleFormatting">Toggle Formatting</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-layout">
+                <!-- Profile Settings & Online Staff List -->
+                <div class="staff-list-container">
+                    <!-- Profile Settings Section -->
+                    <div class="profile-settings-section">
+                        <div class="profile-settings-header">Profile Settings</div>
+                        <div class="profile-settings-content">
+                            <div class="profile-avatar-preview-container">
+                                <img id="profileSettingsAvatar" src="" alt="Your Avatar" class="profile-settings-avatar">
+                                <div id="profileSettingsAvatarPlaceholder" class="profile-settings-avatar-placeholder"></div>
+                            </div>
+                            <input type="text" id="profileSettingsUrlInput" class="profile-settings-input" placeholder="Enter image URL..." autocomplete="off">
+                            <div class="profile-settings-buttons">
+                                <button class="profile-settings-btn" id="profileSettingsSaveBtn">Save</button>
+                                <button class="profile-settings-btn profile-settings-btn-remove" id="profileSettingsRemoveBtn">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Online Staff List -->
+                    <div class="staff-list-section">
+                        <div class="staff-list-header">Online Staff</div>
+                        <div id="staffList" class="staff-list">
+                            <!-- Staff members will be added here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Messages Container -->
+                <div class="page-content" id="messages-page">
+                    <div class="messages-section">
+                        <div id="pinnedMessages" class="pinned-messages"></div>
+                        <div id="messagesContainer" class="messagesContainer">
+                            <!-- Messages will be added here -->
+                        </div>
+                    </div>
+                    <div id="typingIndicator" class="typing-indicator hidden">
+                        <div class="typing-indicator-content">
+                            <div class="typing-dots-container">
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                            </div>
+                            <div class="typing-text-wrapper">
+                                <span class="typing-icon">✍️</span>
+                                <span id="typingText" class="typing-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Container -->
+            <div class="input-section">
+                <div class="formatting-toolbar" id="formattingToolbar">
+                    <button class="format-btn" data-format="bold" title="Bold">B</button>
+                    <button class="format-btn" data-format="italic" title="Italic">I</button>
+                    <button class="format-btn" data-format="code" title="Code">&lt;/&gt;</button>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="messageInput" class="weapon-search-input" placeholder="Type your message..." maxlength="500" autocomplete="off">
+                    <button class="apply-button" id="sendBtn">Send</button>
+                </div>
+            </div>
+            
+            <button class="close-button" id="close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Profile Preview Modal -->
+    <div id="profilePreviewModal" class="profile-modal hidden">
+        <div class="profile-modal-overlay"></div>
+        <div class="profile-modal-content">
+            <button class="profile-modal-close" id="profileModalClose">×</button>
+            <div class="profile-modal-avatar-container">
+                <img id="profileModalAvatar" src="" alt="Profile" class="profile-modal-avatar">
+                <div id="profileModalAvatarPlaceholder" class="profile-modal-avatar-placeholder"></div>
+            </div>
+            <div class="profile-modal-name" id="profileModalName"></div>
+            <div class="profile-modal-subtitle">Staff Member</div>
+        </div>
+    </div>
+
+    <script src="staffchat.js"></script>
+</body>
+</html>
+

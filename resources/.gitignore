@@ -1,0 +1,9 @@
+# Ignore cache directories with long paths
+[standalone]/cache/
+[standalone]/cache/**/*
+
+# Common build/cache directories
+node_modules/
+*.log
+.DS_Store
+

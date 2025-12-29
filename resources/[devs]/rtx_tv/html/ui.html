@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="styles.css" type="text/css">
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+		<script src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflJJaNgk/www-widgetapi.js"></script>
+		<script src="https://www.youtube.com/iframe_api"></script>	
+		<link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v6.2.0/css/pro.min.css">
+	</head>
+
+	<body>
+		<div class="full-screen">				
+			<div class="vehicletvcreator-container" id="vehicletvcreatorshow">
+				<div class="headervehicletvcreator">
+					<h1 class="HeaderVehicleTVCreatorText">Television Creator</h1>
+				</div>
+				<div class="vehicletvcreator1"><span id="keyboardcolor">Arrows</span> for move</div>
+				<div class="vehicletvcreator2"><span id="keyboardcolor">Z</span> to move up</div>
+				<div class="vehicletvcreator3"><span id="keyboardcolor">Y</span> to move down</div>
+				<div class="vehicletvcreator4"><span id="keyboardcolor">G</span> for change speed</div>
+				<div class="vehicletvcreator5"><span id="keyboardcolor">H</span> for change mode</div>
+				<div class="vehicletvcreator6">Current speed: <span id="currentspeeddata">1</span></div>
+				<div class="vehicletvcreator7">Current mode:  <span id="currentmodedata">MOVE</span></div>
+				<div class="vehicletvcreator8"><span id="keyboardcolor">ENTER</span> for finish</div>
+			</div>
+			<div class="vehicletvcreatorfinish-container" id="vehicletvcreatorfinishshow">
+				<div class="headervehicletvcreatorfinish">
+					<h1 class="HeaderVehicleTVCreatorFinishText">Television Creator</h1>
+					<img class="closetvcreatorfinish" src="img/close.png" style="width:30px;height:30px" alt="CloseTVCreatorFinish"/>
+				</div>
+				<div class="offsetspreviewtext">Offsets preview</div>
+				<div class="tvcopytextdatamain">
+					<textarea class="tvcopytextdata" placeholder="" type="text"></textarea>
+				</div>
+				<div class="buttoncopy"><i class="fa-solid fa-copy" id="copyicon"></i>&ensp;Copy offsets</div>
+			</div>					  
+			  <div class="tv-container" id="tvshow">
+				<div class="tv-status" id="tv-status"></div>
+				<div class="tv-header">
+				  <div class="tv-title">
+					<i class="fas fa-tv"></i> TELEVISION
+				  </div>
+				  <button class="close-btn" id="close-btn">
+					<i class="fas fa-times"></i>
+				  </button>
+				</div>
+
+				<div class="tv-content">
+				  <div class="now-playing">
+					<div class="section-title">
+					  <span id="currently-playing"> <i class="fas fa-play-circle"></i> Currently Playing</span>
+					</div>
+					<div class="now-playing-type" id="currentlytexttype">Not playing</div>
+					<div class="now-playing-url" id="currentlytextdatashow">
+					  <div class="now-playing-url-text" id="currentlytextdata2"></div>
+					</div>
+				  </div>
+
+				  <input class="video-input" id="videoinputtvdata" placeholder="Enter video URL..." type="text">
+
+				  <div class="volume-control">
+					<div class="section-title">
+					  <i class="fas fa-volume-up"></i> Volume
+					</div>
+					<div class="volume-slider-container">
+					  <i class="fas fa-volume-down volume-icon"></i>
+					  <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumesliderdata" onchange="volumechange(this)">
+					  <i class="fas fa-volume-up volume-icon"></i>
+					</div>
+				  </div>
+
+				  <div class="action-buttons">
+					<button class="action-btn play-btn" id="play-btn">
+					  <i class="fas fa-play" id="playicon"></i> Play Video
+					</button>
+					<button class="action-btn power-btn" id="power-btn">
+					  <i class="fas fa-power-off" id="stopicon"></i> Turn Off TV
+					</button>
+				  </div>
+				</div>
+			  </div>
+		</div>
+
+		<script src="scripts.js" type="text/javascript"></script>
+	</body>
+<html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div id="settingsContainer" class="hidden">
+        <div class="tablet-container">
+            <div class="tuning-header">
+                <div class="header-content">
+                    <img id="header-logo" src="" alt="Logo" class="header-logo">
+                    <div class="header-text">
+                        <div class="tuning-title">Profile Settings</div>
+                        <div class="tuning-subtitle">Customize your profile picture</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Container -->
+            <div class="page-content" id="settings-page">
+                <div class="settings-section">
+                    <div class="settings-title">Profile Picture</div>
+                    <div class="settings-group">
+                        <label class="settings-label">Profile Picture URL</label>
+                        <div class="avatar-preview-container">
+                            <img id="avatarPreview" src="" alt="Avatar Preview" class="avatar-preview">
+                            <div class="avatar-preview-placeholder" id="avatarPreviewPlaceholder">No Avatar</div>
+                        </div>
+                        <input type="text" id="avatarUrlInput" class="weapon-search-input" placeholder="https://example.com/avatar.png" autocomplete="off">
+                        <div class="settings-buttons">
+                            <button class="apply-button" id="saveAvatarBtn">Save Avatar</button>
+                            <button class="apply-button" id="removeAvatarBtn" style="background: rgba(220, 53, 69, 0.2); border-color: rgba(220, 53, 69, 0.5);">Remove Avatar</button>
+                        </div>
+                        <div class="settings-hint">Enter a direct link to an image (PNG, JPG, GIF, etc.)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="close-button" id="close-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
+
