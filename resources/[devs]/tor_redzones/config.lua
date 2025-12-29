@@ -85,16 +85,16 @@ Config.Zones = {
 	-- 	Color = {255, 0, 0}, -- Red
 	-- 	Opacity = 100 -- 0-255 (100 = semi-transparent)
 	-- },
-	["Weekend Drug Zone"] = {
-		["label"] = "Weekend Drug Zone",
-		["zone"] = {
-			vector3(1253.56, -1454.94, 34.96),
-			vector3(1096.35, -1450.85, 36.41),
-			vector3(1110.58, -1639.16, 30.27),
-			vector3(1272.08, -1522.04, 42.97),			
-		},
-		Thickness = 25,
-		Color = {255, 0, 0}, -- Red
-		Opacity = 50 -- 0-255 (100 = semi-transparent)
-	},
+	-- ["Weekend Drug Zone"] = {
+	-- 	["label"] = "Weekend Drug Zone",
+	-- 	["zone"] = {
+	-- 		vector3(1253.56, -1454.94, 34.96),
+	-- 		vector3(1096.35, -1450.85, 36.41),
+	-- 		vector3(1110.58, -1639.16, 30.27),
+	-- 		vector3(1272.08, -1522.04, 42.97),			
+	-- 	},
+	-- 	Thickness = 25,
+	-- 	Color = {255, 0, 0}, -- Red
+	-- 	Opacity = 50 -- 0-255 (100 = semi-transparent)
+	-- },
 }
