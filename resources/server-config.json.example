@@ -1,0 +1,17 @@
+{
+  "ServerPath": "C:\\Users\\ser5s\\Desktop\\FiveM Server\\Server Files\\FXServer.exe",
+  "ServerName": "FiveM Server",
+  "RestartDelay": 10,
+  "GitBranch": "main",
+  "Webhook": {
+    "Enabled": false,
+    "Port": 8080,
+    "Secret": "your-github-webhook-secret-here"
+  },
+  "AutoPull": {
+    "Enabled": true,
+    "IntervalMinutes": 15,
+    "RestartOnUpdate": false
+  }
+}
+

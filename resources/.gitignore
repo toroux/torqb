@@ -7,3 +7,14 @@ node_modules/
 *.log
 .DS_Store
 
+# FiveM Server specific files
+server.cfg
+server-config.json
+logs/
+*.db
+*.rpf
+*.sfl
+
+# Keep server-config.json.example for reference
+!server-config.json.example
+
