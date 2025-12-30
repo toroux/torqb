@@ -32,3 +32,4 @@ jobs:
         echo "Deployment completed successfully!"
         # Add notification logic here (Discord webhook, email, etc.)
 
+

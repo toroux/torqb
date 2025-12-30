@@ -80,3 +80,4 @@ Write-Host "  Stop:    net stop $ServiceName" -ForegroundColor White
 Write-Host "  Status:  Get-Service $ServiceName" -ForegroundColor White
 Write-Host "  Remove:  & `"$NSSMPath`" remove $ServiceName confirm" -ForegroundColor White
 
+
